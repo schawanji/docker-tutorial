@@ -1,0 +1,15 @@
+services:
+  app:
+   build: .
+   container_name : python-server
+   command : uvicorn src.main:app --host [hostmachine]  --port 80 --reload  
+   network_mode: host
+   volumes:
+   - .:/code
+   depends_on:
+   - redis
+   
+  redis:
+    image : redis:alpine
+
+
